@@ -4,8 +4,28 @@
 */
 ?>
 
-<link rel="stylesheet" href="https://vtatlasoflife.org/VAL_Data_Explorers/css/local-data-styles.css">
-<link rel="stylesheet" href="https://vtatlasoflife.org/VAL_Data_Explorers/css/gbif-data-styles.css">
+<link href="https://vtatlasoflife.org/VAL_Data_Explorers/css/data-explorer-home.css" rel="stylesheet">
+
+<style>
+
+#stats-nothing    { grid-area: top0; }
+#stats-records    { grid-area: top1; }
+#stats-datasets   { grid-area: top2; }
+#stats-species    { grid-area: bot1; }
+#stats-citations  { grid-area: bot2; }
+#stats-observers  { grid-area: bot3; }
+
+.hero-stats-container {
+	display: grid;
+	grid-template-columns: auto !important; /* override style defined elsewhere */
+	grid-template-areas:
+		'top0 top1 top1 top2 top2 top2'
+		'bot1 bot1 bot2 bot2 bot3 bot3';
+	gap: 10px;
+	padding: 10px;
+}
+
+</style>
 
 <?php get_header(); the_post(); ?>
 
@@ -17,8 +37,10 @@
 
 		<h2><?php the_field('heading-2'); ?></h2>
 
-		<div class="hero-stats-wrap">
+		<div class="hero-stats-wrap hero-stats-container">
 
+			<p id="stats-nothing"></p> <!-- placeholder hack to offset top row of css 6-item, 2-row grid -->
+			
 			<a id="stats-records" class="hero-stats-item" href="<?php site_url(); ?>gbif-explorer?view=MAP">
 
 				<i class="stats-icon far fa-globe-americas"></i>
@@ -108,7 +130,7 @@
 						<?php the_field('observers-count'); ?>
 					</span>
 
-					<span class="stats-desc">observers</span>
+					<span class="stats-desc">contributors</span>
 
 				</div>
 
