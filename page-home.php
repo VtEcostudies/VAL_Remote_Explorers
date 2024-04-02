@@ -13,7 +13,11 @@
 #stats-datasets   { grid-area: top2; }
 #stats-species    { grid-area: bot1; }
 #stats-citations  { grid-area: bot2; }
-#stats-observers  { grid-area: bot3; }
+#stats-contributors  { grid-area: bot3; }
+
+.hero-stats-wrap {
+	max-width: 650px !important; /* adjust to center the stats-icons under the title */
+}
 
 .hero-stats-container {
 	display: grid;
@@ -23,6 +27,10 @@
 		'bot1 bot1 bot2 bot2 bot3 bot3';
 	gap: 10px;
 	padding: 10px;
+}
+
+#stats-nothing {
+	width: 40px;
 }
 
 </style>
@@ -90,19 +98,12 @@
 			</a>
 
 			<a id="stats-citations" class="hero-stats-item" href="<?php the_field('citations-link'); ?>">
-			<!--
-			<a id="stats-citations" class="hero-stats-item" href="https://val.vtecostudies.org/about/publications/">
-			-->
 
 				<i class="stats-icon  fa-light fa-books"></i>
 
 				<div class="stats">
 
 					<span id="count-citations" class="stats-count">
-						<!--
-							Use this if we return to an automated API value
-							<i class="far fa-compass"></i>
-						-->
 						<?php the_field('citations-count'); ?>
 					</span>
 
@@ -112,22 +113,14 @@
 
 			</a>
 
-			<a id="stats-observers" class="hero-stats-item" href="#">
-			<!--
-			<a id="stats-observers" class="hero-stats-item" href="<?/*php the_field('observers-link');*/ ?>">
-			<a id="stats-observers" class="hero-stats-item" href="https://val.vtecostudies.org/about/publications/">
-			-->
+			<a id="stats-contributors" class="hero-stats-item" href="#">
 
 				<i class="stats-icon fa-regular fa-binoculars"></i>
 
 				<div class="stats">
 
-					<span id="count-observers" class="stats-count">
-						<!--
-							Use this if we return to an automated API value
-							<i class="far fa-compass"></i>
-						-->
-						<?php the_field('observers-count'); ?>
+					<span id="count-contributors" class="stats-count">
+						<i class="far fa-compass"></i>
 					</span>
 
 					<span class="stats-desc">contributors</span>
@@ -387,9 +380,9 @@
 </section>
 
 <script type="module" src="<?php echo get_template_directory_uri(); ?>/VAL_Data_Explorers/js/localSiteConfig.js">/*THIS SCRIPT MUST COME FIRST*/</script>
+<script src="https://vtatlasoflife.org/VAL_Data_Explorers/js/gbif_auto_complete.js" type="module"></script>
 <script src="https://vtatlasoflife.org/VAL_Data_Explorers/js/gbif_data_stats.js" type="module"></script>
 <script src="https://vtatlasoflife.org/VAL_Data_Explorers/js/gbif_species_search.js" type="module"></script>
-<script src="https://vtatlasoflife.org/VAL_Data_Explorers/js/gbif_auto_complete.js" type="module"></script>
 
 <?php get_footer(); ?>
 

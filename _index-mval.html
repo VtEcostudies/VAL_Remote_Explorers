@@ -17,7 +17,7 @@
 	#stats-datasets   { grid-area: top2; }
 	#stats-species    { grid-area: bot1; }
 	#stats-citations  { grid-area: bot2; }
-	#stats-contributors  { grid-area: bot3; }
+	#stats-observers  { grid-area: bot3; }
 	
 	.hero-stats-container-five {
 		display: grid;
@@ -29,7 +29,7 @@
 		padding: 10px;
 	}
 	
-	.hero-stats-container-four {
+	.hero-stats-container-mval {
 		display: grid;
 		grid-template-columns: auto !important; /* override style defined elsewhere */
 		grid-template-areas:
@@ -38,7 +38,12 @@
 		gap: 10px;
 		padding: 10px;
 	}
-	
+
+.hero { 
+	background: url(https://mval.biodiversityworksmv.org/wp-content/uploads/2021/09/RTHU-at-Cardinal-Flower_PGilmore_1600x700_acf_cropped-1600x700.jpg) no-repeat center !important; 
+	background-size: cover !important;
+}
+
 	</style>
 
 </head>
@@ -53,7 +58,7 @@
 
   	<div class="content">
 
-      <div class="hero-stats-wrap hero-stats-container-five">
+      <div class="hero-stats-wrap hero-stats-container-mval">
 
 			<a id="stats-records" class="hero-stats-item">
 			<!--<a id="stats-records" class="hero-stats-item" href="_occurrences.html?view=MAP">-->
@@ -82,20 +87,11 @@
 				</div>
 			</a>
 
-			<a id="stats-citations" class="hero-stats-item">
-			<!--<a id="stats-citations" class="hero-stats-item" href="_literature.html">-->
-  				<!--<i class="stats-icon fas fa-trees"></i>-->
-  				<div class="stats">
-  					<span id="count-citations" class="stats-count"><i class="far fa-compass"></i></span>
-  					<span class="stats-desc">citations</span>
-  				</div>
-  			</a>
-
-			<a id="stats-contributors" class="hero-stats-item">
+			<a id="stats-observers" class="hero-stats-item">
 				<!-- <i class="fa-regular fa-binoculars"></i> -->
-				<div class="stats stats-contributors">
-					<span id="count-contributors" class="stats-count stats-count-contributors"><i class="far fa-compass"></i></span>
-					<span id="label-contributors" class="stats-desc">contributors</span>
+				<div class="stats stats-observers">
+					<span id="count-observers" class="stats-count stats-count-observers"><i class="far fa-compass"></i></span>
+					<span id="label-observers" class="stats-desc">observers</span>
 				</div>
 			</a>
 

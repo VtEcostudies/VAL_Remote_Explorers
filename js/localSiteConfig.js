@@ -1,8 +1,13 @@
 var Storage = window.sessionStorage ? sessionStorage : false;
 
+//get URL search params from calling module file - a cool feature called a metaURL
+const metaUrl = new URL(import.meta.url); //lower case '.url' is a property
+const metaSite = metaUrl.searchParams.get('siteName'); //calling modules do this: import { dataConfig } from '../VAL_Web_Utilities/js/gbifDataConfig.js?siteName=val'
+console.log('localSiteConfig called by module with siteName', metaSite);
+
 export const siteConfig = {
     //siteName: 'val'
-    siteName: 'mval'
+    //siteName: 'mval'
     //siteName: 'vtButterflies'
     //siteName: 'vtBees'
     //siteName: 'vtMammals'
@@ -19,4 +24,4 @@ export function setLocalSite(localSiteName=siteConfig.siteName) {
   }
 }
 
-setLocalSite();
+setLocalSite(metaSite ? metaSite : siteConfig.siteName);
