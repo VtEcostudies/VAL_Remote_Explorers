@@ -6,7 +6,7 @@ const metaSite = metaUrl.searchParams.get('siteName'); //calling modules do this
 console.log('localSiteConfig called by module with siteName', metaSite);
 
 export const siteConfig = {
-    //siteName: 'val'
+    siteName: 'val'
     //siteName: 'mval'
     //siteName: 'vtButterflies'
     //siteName: 'vtBees'

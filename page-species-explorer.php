@@ -4,71 +4,17 @@
 */
 ?>
 
-<style>
-
-.page-template-page-species-explorer .hero #searchform #searchsubmit-wrap { 
-  background-image: url(/wp-content/themes/val/images/magnify-small.png) !important; 
-  background-size: 15px 14px; 
-}
-.page-template-page-species-explorer .hero #searchform:after { 
-  background-image: url(/wp-content/themes/val/images/hummingbird@2x.png) !important; 
-  background-size: 15px 14px; 
-}
-
-.page-template-page-species-explorer .hero { 
-  background: url(/wp-content/themes/val/images/vermont-panorama-small.jpg) no-repeat center !important; 
-  background-size: cover; 
-  position: relative; 
-  padding: 120px 30px 30px 30px; 
-  text-align: center; 
-  color: #fff; 
-  z-index: 1000;
-}
-
-@media screen and (min-width: 680px) { 
-  .page-template-page-species-explorer .hero { 
-    padding: 30px 30px 30px 30px; 
-    background-image: url(/wp-content/themes/val/images/vermont-panorama-medium.jpg) !important; 
-  } 
-}
-
-@media screen and (min-width: 950px) { 
-  .page-template-page-species-explorer .hero { 
-    padding: 90px 30px 30px 30px; 
-    background-image: url(/wp-content/themes/val/images/vermont-panorama-large.jpg) !important; 
-  } 
-}
-
-</style>
-
 <?php get_header(); the_post(); ?>
-
-<script language="Javascript">
-    var info_on = false;
-    function showInfo(text=false, button=false) {
-      document.getElementById("information-overlay").style.display = 'flex';
-      if (!button) {document.getElementById("information-button").style.display = 'none'}
-      if (text) {document.getElementById("information-content").innerText = text;}
-      info_on = true;
-    }
-    function hideInfo() {
-      document.getElementById("information-overlay").style.display = 'none';
-      info_on = false;
-    }
-    function toggleInfo(text=false, button=true) {
-      var eleTxt = document.getElementById("information-content");
-      if (!button) {document.getElementById("information-button").style.display = 'none'}
-      if (eleTxt) {
-        if (!info_on || `${text}` != `${eleTxt.innerText}`) {showInfo(text);} else {hideInfo();}
-      } else {console.log(`No element with id 'information-content'`); }
-    }
-</script>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 
-<link href="https://vtatlasoflife.org/VAL_Data_Explorers/css/gbif-data-styles.css" rel="stylesheet">
+<link href="https://<?php echo get_val_server_name() ?>/VAL_Data_Explorers/css/gbif-data-styles.css" rel="stylesheet">
+<link href="https://<?php echo get_val_server_name() ?>/VAL_Data_Explorers/css/species-explorer-header.css" rel="stylesheet">
+<link href="https://<?php echo get_val_server_name() ?>/VAL_Data_Explorers/css/species-explorer.css" rel="stylesheet">
+<link href="https://<?php echo get_val_server_name() ?>/VAL_Web_Utilities/css/infoPopup.css" rel="stylesheet">
+<link href="https://<?php echo get_val_server_name() ?>/VAL_Web_Utilities/css/imageOverlay.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" crossorigin="anonymous">
@@ -85,12 +31,8 @@
 
   	<div class="content">
 
-      <div class="hero-header-info-icon">
-  		  <h2 id="species-title" style="display: inline-block;">Species Explorer</h2>
-        <a href="#" onclick="toggleInfo('The Species Explorer does a full text search of the Atlas Species Checklist on GBIF. Text is searched against Scientific Name, Common Name, and Species Description.', true);"
-          style="display: inline-block; vertical-align: top;">
-          <i class="fa fa-info-circle"></i>
-        </a>
+      <div class="hero-title-div-wordpress">
+  		  <h2 id="species-title" class="hero-title-wordpress">Species Explorer</h2>
       </div>
 
   		<form id="searchform" onsubmit="return false;" >
@@ -144,6 +86,7 @@
                 <option value="SPECIES">Species</option>
                 <option value="SUBSPECIES">Subspecies</option>
                 <option value="VARIETY">Variety</option>
+                <option value="FORM">Form</option>
               </select>
             </li>
             <li id="compare-list" class="page-item page-list">
@@ -217,13 +160,6 @@
 
       <div id="download-overlay"></div>
 
-      <div id="information-overlay">
-        <p id="information-content">
-          Click Scientific Name to list all its child taxa.
-        </p>
-        <button class="btn btn-primary" id="information-button" onclick="hideInfo();">Ok</button>
-      </div>
-
       <div class="row" id="species-results">
         <div class="col-lg-12">
           <table id="species-table" class="table table-striped table-responsive table-sm"></table>
@@ -254,5 +190,6 @@
 <?php get_footer(); ?>
 
 <script type="module" src="<?php echo get_template_directory_uri(); ?>/VAL_Data_Explorers/js/localSiteConfig.js">/*THIS SCRIPT MUST COME FIRST*/</script>
-<script type="module" src="https://vtatlasoflife.org/VAL_Data_Explorers/js/gbif_auto_complete.js"></script>
-<script type="module" src="https://vtatlasoflife.org/VAL_Data_Explorers/js/gbif_species_results.js"></script>
+<script type="module" src="https://<?php echo get_val_server_name(); ?>/VAL_Data_Explorers/js/freshworks.js"></script>
+<script type="module" src="https://<?php echo get_val_server_name() ?>/VAL_Data_Explorers/js/gbif_auto_complete.js"></script>
+<script type="module" src="https://<?php echo get_val_server_name() ?>/VAL_Data_Explorers/js/gbif_species_results.js"></script>

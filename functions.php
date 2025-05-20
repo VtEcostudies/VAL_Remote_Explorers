@@ -99,7 +99,7 @@ function admin_bar_render() {
 add_action( 'wp_before_admin_bar_render', 'admin_bar_render' );
 
 // customize wp login logo
-function my_login_logo() { ?>
+function my_login_logo() {
     <style type="text/css">
         body.login div#login h1 a {
             background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
@@ -108,7 +108,7 @@ function my_login_logo() { ?>
 			background-size: 160px 40px;
         }
     </style>
-<?php }
+}
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
 // change wp login logo link
@@ -235,4 +235,19 @@ function change_template_path($templates) {
   return $templates;
 }
 add_filter('page_template_hierarchy', 'change_template_path');
+
+function get_val_server_name() {
+
+    $hostname = $_SERVER['HTTP_HOST'];
+
+    $val_server_name = "vtatlasoflife.org";
+
+    if (strpos($hostname, 'dev') !== false) {
+        $val_server_name = "staging.vtatlasoflife.org";
+    }
+
+    return $val_server_name;
+}
+add_action('wp', 'get_val_server_name');
+
 //END Changes for GBIF and VAL Data Explorers
